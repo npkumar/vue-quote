@@ -1,11 +1,22 @@
 <template>
   <div class="container">
-    <quote-grid :quotes=quotes></quote-grid>
+    <new-quote @quoteAdded="newQuote"></new-quote>
+    <quote-grid
+      :quotes="quotes"
+      @quoteDeleted="deleteQuote"
+    ></quote-grid>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <div class="alert-info">Click on quote to delete!</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import QuoteGrid from './components/QuoteGrid';
+import NewQuote from './components/NewQuote';
+
 export default {
   data: function () {
     return {
@@ -14,7 +25,16 @@ export default {
     }
   },
   components: {
-    QuoteGrid
+    QuoteGrid,
+    NewQuote
+  },
+  methods: {
+    newQuote: function(quote) {
+      this.quotes.push(quote);
+    },
+    deleteQuote: function(index) {
+      this.quotes.splice(index, 1);
+    }
   }
 }
 </script>
