@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <new-quote @quoteAdded="newQuote"></new-quote>
+    <app-header :quoteCount="quotes.length"></app-header>
     <quote-grid
       :quotes="quotes"
       @quoteDeleted="deleteQuote"
@@ -16,6 +17,7 @@
 <script>
 import QuoteGrid from './components/QuoteGrid';
 import NewQuote from './components/NewQuote';
+import Header from './components/Header';
 
 export default {
   data: function () {
@@ -26,7 +28,8 @@ export default {
   },
   components: {
     QuoteGrid,
-    NewQuote
+    NewQuote,
+    appHeader: Header
   },
   methods: {
     newQuote: function(quote) {
